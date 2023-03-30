@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang=""en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Online visitor book</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="mt-md-5">
+        <div class="pl-sm-5">
+            <div class="pr-sm-5">
+                <h3 align="center">Matthew's Online Guest book</h3>
+                <br>
+                <h5 align="center">Check out this project on Github! <a href="https://github.com/BobaFettyW4p/GuestbookK8s" width="40px" height="40px"><img src="./githubLogo.png" alt="Come visit my Github page!"></a></h5>
+                <br>
+                <hr>
+                <form action="/" method="POST">
+                    <label for="name">Your name:</label><br>
+                    <input type="text" id="name" name="name"><br>
+                    <label for="messsage">Your message:</label><br>
+                    <input type="text" id="message" name="message"><br>
+                    <p></p>
+                    <button type="submit" class="btn btn-success">Sign the Guest Book!</button><br>
+                </form>
+                <br>
+                <hr>
+                <h5 align="center">Messages from our adoring fans</h5>
+                {% for i in guestbook %}
+                <li align="left">{{i}}</li>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
