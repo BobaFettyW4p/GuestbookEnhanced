@@ -1,0 +1,6 @@
+.terraform.lock.hcl
+errored.tfstate
+write_to_guestbook.zip
+read_from_guestbook.zip
+terraform/.terraform/*
+*/githubLogo.png*
