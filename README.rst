@@ -1,6 +1,32 @@
-Guestbook
-=========
+Enhanced Online Guestbook
+=========================
+
+This project is based on `this project <https://github.com/BobaFettyW4p/OnlineGuestbook>`_ replacing the server-based infrastructure with a serverless, containerized infrastructure
 
 .. image:: https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/GuestbookEnhanced.png
 
-This project is based on `this project <https://github.com/BobaFettyW4p/OnlineGuestbook>`_
+Components
+==========
+
+#. A `Route53 DNS record <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/route53.tf>`_ handling DNS services
+
+#. A `Cloudfront distribution <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/cloudfront.tf>`_ to distribute content and provide encryption
+
+#. An `ACM certificate <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/acm.tf>`_ to provide the SSL certificate needed for encryption
+
+#. An `Elastic Load Balancer <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/load_balancer.tf>`_ that routes traffic to the active containers
+
+#. A `container image <https://github.com/BobaFettyW4p/GuestbookEnhanced/tree/main/container>`_ that will  host the Flask app that services the front end
+
+#. An `ECS (Elastic Container Service) task <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/ecs.tf>`_ that will deploy the container image
+
+#. An `ECR (Elastic Container Registry) repo <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/ecr.tf>`_ that will store the container image
+
+#. A read_from guestbook API consisting of an `API Gateway <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/api_read.tf>`_ that calls a `lambda function <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/read_from_guestbook/retreive_database_entries.py>`_
+
+#. A write_to_guestbook API consisting of an `API Gateway <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/api_write.tf>`_ that calls a `lambda function <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/write_to_guestbook/write_to_guestbook.py>`_
+
+#. A `DynamoDB database <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/database.tf>`_ referenced by the APIs
+
+
+
