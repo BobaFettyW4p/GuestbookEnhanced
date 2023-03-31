@@ -8,7 +8,7 @@ This project is based on `this project <https://github.com/BobaFettyW4p/OnlineGu
 Components
 ==========
 
-#. A `Route53 DNS record <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/route53.tf>`_ handling DNS services
+#. A `Route53 hosted zone <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/route53.tf>`_ handling DNS services
 
 #. A `Cloudfront distribution <https://github.com/BobaFettyW4p/GuestbookEnhanced/blob/main/terraform/cloudfront.tf>`_ to distribute content and provide encryption
 
