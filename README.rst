@@ -51,5 +51,3 @@ To-Do
 #. Logging for the containers via the ELK (Elastisearch, Logstash, Kibana) stack
 test
 
-
-test
