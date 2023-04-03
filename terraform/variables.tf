@@ -20,5 +20,5 @@ variable "domain_name" {
 
 variable "github_repo" {
   type    = string
-  default = "https://github.com/BobaFettyW4p/GuestbookEnhanced"
+  default = "BobaFettyW4p/GuestbookEnhanced"
 }
