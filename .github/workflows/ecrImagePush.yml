@@ -43,18 +43,19 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-      - name: Update ECS task definition
-        working-directory: ./terraform/templates
+      - name: Render ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: guestbook_ecs_template.json
+          task-definition: ./terraform/templates/guestbook_ecs_template.json
           container-name: guestbook
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        service: guestbook
-        cluster: guestbook
-        wait-for-service-stability: true
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: guestbook
+          cluster: guestbook
+          wait-for-service-stability: true
 
