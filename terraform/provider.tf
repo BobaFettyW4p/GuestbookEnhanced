@@ -26,8 +26,3 @@ provider "aws" {
   alias  = "acm_provider"
   region = "us-east-1"
 }
-
-module "github-oidc-provider" {
-  source  = "terraform-module/github-oidc-provider/aws"
-  version = "2.1.0"
-}
