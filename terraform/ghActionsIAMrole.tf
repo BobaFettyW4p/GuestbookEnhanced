@@ -27,20 +27,3 @@ resource "aws_iam_role_policy_attachment" "ghActions" {
   role       = aws_iam_role.ghActionsrole.name
   policy_arn = each.value
 }
-
-module "github-oidc" {
-  source  = "terraform-module/github-oidc-provider/aws"
-  version = "2.1.0"
-
-  create_oidc_provider = true
-  create_oidc_role     = true
-
-  repositories = ["${var.github_repo}"]
-  oidc_role_attach_policies = [
-    "arn:aws:iam::aws:policy/AmazonECS_FullAccess",
-    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-    "arn:aws:iam::aws:policy/CloudWatchAgentAdminPolicy"
-  ]
-  role_name        = "GithubActionsRoleOIDC"
-  role_description = "Role for Github Actions"
-}
