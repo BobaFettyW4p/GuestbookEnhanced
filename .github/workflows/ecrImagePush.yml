@@ -42,12 +42,16 @@ jobs:
           echo "Pushing image to ECR..."
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
+      
+      - name: Download task definition
+        run: |
+          aws ecs describe-task-definition guestbook --query taskDefinition | task-definition.json
+      
       - name: Render ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ./terraform/templates/guestbook_ecs_template.json
+          task-definition: task-definition.json
           container-name: guestbook
           image: ${{ steps.build-image.outputs.image }}
 
