@@ -17,8 +17,3 @@ variable "domain_name" {
   type    = string
   default = "guestbook.mivancic.com"
 }
-
-variable "github_repo" {
-  type    = string
-  default = "BobaFettyW4p/GuestbookEnhanced"
-}
