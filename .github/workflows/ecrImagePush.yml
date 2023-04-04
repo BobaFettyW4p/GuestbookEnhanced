@@ -63,3 +63,6 @@ jobs:
           cluster: guestbook
           wait-for-service-stability: true
 
+      - name: Invalidate Cloudfront cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION }} --paths "/*"
+
