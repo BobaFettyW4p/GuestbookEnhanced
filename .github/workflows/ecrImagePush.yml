@@ -1,0 +1,38 @@
+name: "Push container image to ECR repo"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Container Image
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        working-directory: container
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      
+      - name: Build, tag, and push docker image to Amazon ECR
+        env:
+          ECR_ REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          repository: ${{ secrets.ECR_REPO }}
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
